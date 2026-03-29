@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Australia's Capacity Investment Scheme — Project Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1117;
+    --ink-muted: #4a4f5e;
+    --ink-light: #8b909e;
+    --paper: #f5f3ef;
+    --paper-warm: #ede9e2;
+    --paper-card: #ffffff;
+    --accent: #1a3d2b;
+    --accent-mid: #2e6b4a;
+    --accent-light: #d4ead9;
+    --amber: #c8700a;
+    --amber-light: #fdf0dc;
+    --red: #a82828;
+    --red-light: #fae8e8;
+    --green: #1e5c30;
+    --green-light: #e0f0e5;
+    --border: rgba(15,17,23,0.1);
+    --border-strong: rgba(15,17,23,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 4rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.03) 40px,
+      rgba(255,255,255,0.03) 41px
+    );
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0; right: 0;
+    height: 40px;
+    background: var(--paper);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: rgba(255,255,255,0.4);
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+    max-width: 640px;
+  }
+  h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .header-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .header-meta span { display: flex; align-items: center; gap: 6px; }
+  .header-meta span::before { content: '·'; color: rgba(255,255,255,0.3); }
+  .header-meta span:first-child::before { display: none; }
+
+  /* LAYOUT */
+  main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  section { margin-bottom: 3.5rem; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+  }
+  .section-rule {
+    width: 40px;
+    height: 2px;
+    background: var(--accent-mid);
+    margin-bottom: 1.25rem;
+    border-radius: 1px;
+  }
+
+  p { font-size: 15px; color: var(--ink-muted); margin-bottom: 0.85rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* STAT CARDS */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+  @media(max-width:640px) { .stat-row { grid-template-columns: 1fr 1fr; } }
+
+  .stat-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.125rem 1rem;
+  }
+  .stat-card .label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+  .stat-card .value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-card .note { font-size: 12px; color: var(--ink-light); }
+  .stat-card.highlight { background: var(--accent); border-color: var(--accent); }
+  .stat-card.highlight .label { color: rgba(255,255,255,0.55); }
+  .stat-card.highlight .value { color: #fff; }
+  .stat-card.highlight .note { color: rgba(255,255,255,0.5); }
+  .stat-card.warning { background: var(--amber-light); border-color: rgba(200,112,10,0.2); }
+  .stat-card.warning .value { color: var(--amber); }
+  .stat-card.danger { background: var(--red-light); border-color: rgba(168,40,40,0.2); }
+  .stat-card.danger .value { color: var(--red); }
+
+  /* PROGRESS BARS */
+  .progress-block { margin-bottom: 1.25rem; }
+  .progress-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+  .progress-meta .prog-label { font-size: 13px; color: var(--ink-muted); }
+  .progress-meta .prog-value { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .progress-track {
+    height: 7px;
+    background: var(--paper-warm);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .prog-note { font-size: 11px; color: var(--ink-light); margin-top: 4px; }
+
+  /* TENDER GRID */
+  .tender-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media(max-width:600px) { .tender-grid { grid-template-columns: 1fr; } }
+
+  .tender-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.125rem 1.25rem;
+    position: relative;
+  }
+  .tender-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+  }
+  .tender-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .tender-capacity {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+  .tender-desc { font-size: 12.5px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
+
+  /* BADGES */
+  .badge {
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-critical { background: var(--red-light); color: var(--red); }
+  .badge-concern { background: var(--amber-light); color: var(--amber); }
+  .badge-progressing { background: var(--green-light); color: var(--green); }
+  .badge-new { background: #e8eef5; color: #2a4a6b; }
+
+  /* ALERT BOX */
+  .alert {
+    background: var(--amber-light);
+    border: 1px solid rgba(200,112,10,0.25);
+    border-left: 3px solid var(--amber);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .alert-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--amber);
+    margin-bottom: 0.3rem;
+  }
+  .alert p { font-size: 13px; color: #7a4a10; margin: 0; }
+
+  /* PROJECT LIST */
+  .project-list { display: flex; flex-direction: column; gap: 9px; }
+
+  .project-item {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid;
+    border-radius: 8px;
+    padding: 0.875rem 1rem 0.875rem 1.125rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .project-item.stalled { border-left-color: var(--red); }
+  .project-item.watch { border-left-color: var(--amber); }
+  .project-item.ok { border-left-color: var(--green); }
+  .project-content { flex: 1; min-width: 0; }
+  .project-name { font-size: 13.5px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .project-detail { font-size: 12.5px; color: var(--ink-muted); line-height: 1.55; margin: 0; }
+  .project-badge {
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pb-stalled { background: var(--red-light); color: var(--red); }
+  .pb-watch { background: var(--amber-light); color: var(--amber); }
+  .pb-ok { background: var(--green-light); color: var(--green); }
+
+  /* REASONS GRID */
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media(max-width:600px) { .reasons-grid { grid-template-columns: 1fr; } }
+
+  .reason-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.125rem 1.25rem;
+  }
+  .reason-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+    color: var(--paper-warm);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    -webkit-text-stroke: 1px var(--border-strong);
+  }
+  .reason-title { font-size: 13.5px; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+  .reason-desc { font-size: 12.5px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
+
+  /* LEGEND */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 1rem; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  /* FOOTER */
+  footer {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+  }
+  .footer-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-sources { font-size: 12px; color: var(--ink-light); line-height: 1.7; max-width: 520px; }
+  .footer-date { font-size: 12px; color: var(--ink-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease both; }
+  .fade-up:nth-child(1) { animation-delay: 0.05s; }
+  .fade-up:nth-child(2) { animation-delay: 0.10s; }
+  .fade-up:nth-child(3) { animation-delay: 0.15s; }
+  .fade-up:nth-child(4) { animation-delay: 0.20s; }
+
+  @media print {
+    header::after { display: none; }
+    .fade-up { animation: none; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-label">Energy Policy Briefing</div>
+    <h1>Australia's Capacity Investment Scheme — <em>from contracts to delivery</em></h1>
+    <div class="header-meta">
+      <span>Federal government revenue underwriting</span>
+      <span>40 GW target by 2030</span>
+      <span>82% renewable electricity goal</span>
+      <span>Research to March 2026</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- WHAT IS THE CIS -->
+  <section>
+    <h2>What is the CIS?</h2>
+    <div class="section-rule"></div>
+    <p>The Capacity Investment Scheme is the Australian Government's flagship mechanism to accelerate investment in renewable energy generation (solar and wind) and clean dispatchable capacity (batteries). It works as a revenue underwriting agreement — if a project earns below a government-agreed floor price, the government tops it up to 90% of the shortfall. If a project earns above a ceiling, it repays 50% of the surplus to the Commonwealth.</p>
+    <p>Contracts of up to 15 years (called CISAs — Capacity Investment Scheme Agreements) are awarded through competitive tender rounds run roughly every six months from 2024 to 2027. The scheme was originally sized at 32 GW in 2022, then expanded to 40 GW in July 2025 — comprising 26 GW of new generation and 14 GW of clean dispatchable capacity.</p>
+
+    <div class="stat-row" style="margin-top:1.75rem">
+      <div class="stat-card highlight fade-up">
+        <div class="label">Expanded target (Jul 2025)</div>
+        <div class="value">40 GW</div>
+        <div class="note">26 GW generation + 14 GW dispatchable</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="label">CISAs awarded to date</div>
+        <div class="value">~20 GW</div>
+        <div class="note">Across all completed tenders</div>
+      </div>
+      <div class="stat-card danger fade-up">
+        <div class="label">Generation reached FID</div>
+        <div class="value">4%</div>
+        <div class="note">Only ~0.5 GW of 13 GW awarded</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="label">Investment supported</div>
+        <div class="value">$73B</div>
+        <div class="note">Estimated across 2024–2027</div>
+      </div>
+    </div>
+
+    <div class="progress-block">
+      <div class="progress-meta">
+        <span class="prog-label">Generation capacity: final investment decision (FID) conversion</span>
+        <span class="prog-value">~4%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:4%;background:#a82828;"></div>
+      </div>
+      <div class="prog-note">Only 2 solar projects reached FID of 39 CIS-awarded wind/solar projects as of October 2025. No wind project reached FID in all of 2025.</div>
+    </div>
+    <div class="progress-block">
+      <div class="progress-meta">
+        <span class="prog-label">Battery storage (BESS): FID conversion rate</span>
+        <span class="prog-value">~28%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:28%;background:#c8700a;"></div>
+      </div>
+    </div>
+    <div class="progress-block">
+      <div class="progress-meta">
+        <span class="prog-label">Renewables share of NEM energy (Q3 2025)</span>
+        <span class="prog-value">42.7%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:42.7%;background:#2e6b4a;"></div>
+      </div>
+      <div class="prog-note">Target is 82% by 2030 — requires approximately 8% annual growth in renewables penetration, far above the current trajectory.</div>
+    </div>
+    <div class="progress-block">
+      <div class="progress-meta">
+        <span class="prog-label">2030 target</span>
+        <span class="prog-value">82%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:82%;background:#e0e0d8;"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- COMPLETED TENDERS -->
+  <section>
+    <h2>Completed tender rounds</h2>
+    <div class="section-rule"></div>
+    <p style="margin-bottom:1.25rem">Six tender rounds have concluded as of March 2026. A seventh and eighth are open or awaiting results. Here is what each round delivered — and how concerning the delivery outlook is.</p>
+
+    <div class="tender-grid">
+
+      <div class="tender-card">
+        <div class="tender-card-head">
+          <div class="tender-name">CIS Pilot #1 — NSW (Nov 2023)</div>
+          <span class="badge badge-concern">Concern</span>
+        </div>
+        <div class="tender-capacity">6 projects · 1,075 MW · Batteries &amp; VPPs</div>
+        <p class="tender-desc">Joint federal/NSW government round. Includes the Orana BESS (Akaysha Energy, $650M financed, progressing) and the Waratah Super Battery (850 MW, Akaysha). Several other projects remain in AEMO's "proposed" status — the lowest readiness category — despite being awarded over 2 years ago.</p>
+      </div>
+
+      <div class="tender-card">
+        <div class="tender-card-head">
+          <div class="tender-name">CIS Pilot #2 — SA/VIC (Sep 2024)</div>
+          <span class="badge badge-concern">Concern</span>
+        </div>
+        <div class="tender-capacity">6 projects · 995 MW / 3,626 MWh · Dispatchable</div>
+        <p class="tender-desc">Includes Wooreen BESS (EnergyAustralia, 350 MW / 1,400 MWh, VIC), Springvale Energy Hub (Progress Power, 115 MW, VIC), and Hallett BESS (EnergyAustralia, 50 MW, SA). The majority remain "proposed" in AEMO data despite 12+ months since award.</p>
+      </div>
+
+      <div class="tender-card">
+        <div class="tender-card-head">
+          <div class="tender-name">Tender 1 — NEM Generation (Dec 2024)</div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="tender-capacity">19 projects · 6.38 GW (+ 3.6 GWh storage) · Solar, wind &amp; hybrid</div>
+        <p class="tender-desc">Australia's largest ever renewables tender — 84 bids competed for 6 GW. NSW: 7 projects (3.7 GW) including Sandy Creek 700 MW and Goulburn River 450 MW (Lightsource bp). VIC: 7 projects (1.6 GW) including West Mokoan 300 MW (Lightsource bp), Barwon 250 MW (Elgin Energy). SA: 2 projects 574 MW. QLD: 3 projects 550 MW. After 12+ months, only ~8% have reached FID.</p>
+      </div>
+
+      <div class="tender-card">
+        <div class="tender-card-head">
+          <div class="tender-name">Tender 2 — WEM Dispatchable (Mar 2025)</div>
+          <span class="badge badge-progressing">WA Market</span>
+        </div>
+        <div class="tender-capacity">4 projects · 654 MW / 2,595 MWh · Western Australia</div>
+        <p class="tender-desc">Western Australian Wholesale Electricity Market round. Recently awarded; progress data is limited. The WA market operates differently to the NEM and has historically seen stronger project delivery rates on storage. Enough capacity to power 600,000 WA households during peak demand.</p>
+      </div>
+
+      <div class="tender-card">
+        <div class="tender-card-head">
+          <div class="tender-name">Tender 3 — NEM Dispatchable (Sep 2025)</div>
+          <span class="badge badge-new">Early stage</span>
+        </div>
+        <div class="tender-capacity">16 projects · 4.13 GW / 15.37 GWh · Batteries</div>
+        <p class="tender-desc">Largest battery tender to date. NSW projects include: Bulabul 2 BESS (406 MWh, AMPYR), Calala (300 MWh, Equis), Goulburn River BESS (1,370 MWh, Lightsource bp), Mt Piper Stage 1 (1,000 MWh, EnergyAustralia), Swallow Tail (1,218 MWh, AMPYR). VIC: Deer Park (1,100 MWh, Akaysha). Joel Joel (1,000 MWh, ACEnergy) also awarded. Two of 16 projects already at FID.</p>
+      </div>
+
+      <div class="tender-card">
+        <div class="tender-card-head">
+          <div class="tender-name">Tender 4 — NEM Generation (Oct 2025)</div>
+          <span class="badge badge-new">Early stage</span>
+        </div>
+        <div class="tender-capacity">20 projects · 6.6 GW (+ 11.4 GWh storage) · Solar dominant</div>
+        <p class="tender-desc">Highly competitive — 84 bids proposing 25.6 GW competed for 6 GW. Solar PV dominates: 12 of 20 successful projects feature utility-scale solar, with 11 including co-located BESS (hybrid). Delivered $348M in committed First Nations benefits and $291M in community benefits. Too recent to assess stalling risk.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- STALLED PROJECTS -->
+  <section>
+    <h2>Projects showing signs of stalling</h2>
+    <div class="section-rule"></div>
+
+    <div class="alert">
+      <div class="alert-title">Systemic "zombie project" risk</div>
+      <p>Of the 39 CIS-awarded wind and solar projects in the NEM, only 2 solar projects had reached Final Investment Decision (FID) as of October 2025 — a 4% conversion rate. No wind project reached FID in the entire year of 2025. The majority of Tender 1 and Pilot 2 projects remain in AEMO's "proposed" status, the lowest readiness category, even after 12+ months since contract award. Given that large-scale projects take 2–3 years to construct, every month of delay further jeopardises the 82% renewables target by 2030.</p>
+    </div>
+
+    <div class="project-list">
+
+      <div class="project-item stalled">
+        <div class="project-content">
+          <div class="project-name">Wind portfolio — NEM-wide (all Tender 1 winners)</div>
+          <p class="project-detail">No CIS-backed wind project in the NEM reached FID in all of 2025. Wind is critical for overnight baseload as coal retires — unlike solar, wind generates through the night. With 2–3 year construction lead times, further delay into 2026 makes the 2030 target mathematically very difficult.</p>
+        </div>
+        <span class="project-badge pb-stalled">Zero FID</span>
+      </div>
+
+      <div class="project-item watch">
+        <div class="project-content">
+          <div class="project-name">Sandy Creek Solar Farm — Lightsource bp, NSW (700 MW)</div>
+          <p class="project-detail">Tender 1 winner. The largest single solar project in the round. Located in Merriwa, NSW. No FID announcement. Revenue floor may be set below what is needed given current construction cost escalation — a common problem across the Tender 1 portfolio.</p>
+        </div>
+        <span class="project-badge pb-watch">Proposed</span>
+      </div>
+
+      <div class="project-item watch">
+        <div class="project-content">
+          <div class="project-name">Goulburn River Solar Farm — Lightsource bp, NSW (450 MW)</div>
+          <p class="project-detail">Tender 1 winner. Same developer separately won the Goulburn River BESS (1,370 MWh) in Tender 3. The generation project itself has not announced FID. Lightsource bp has also been seeking a buyer for its 1 GW Australian portfolio, creating additional execution uncertainty.</p>
+        </div>
+        <span class="project-badge pb-watch">Proposed</span>
+      </div>
+
+      <div class="project-item watch">
+        <div class="project-content">
+          <div class="project-name">West Mokoan Solar + BESS — Lightsource bp, VIC (300 MW + 560 MWh)</div>
+          <p class="project-detail">Tender 1 winner. Victoria's flagship hybrid project from this round. Lightsource bp's portfolio sale process introduces uncertainty about who will be the responsible developer at the point of financial close.</p>
+        </div>
+        <span class="project-badge pb-watch">At risk</span>
+      </div>
+
+      <div class="project-item watch">
+        <div class="project-content">
+          <div class="project-name">Barwon Solar + BESS — Elgin Energy, VIC (250 MW + 500 MWh)</div>
+          <p class="project-detail">Tender 1 winner. Ireland-headquartered developer. Elgin also won Glanmire (60 MW, NSW) and Elaine (125 MW, VIC) in the same tender. No FID confirmed post-award across any of the three Elgin projects.</p>
+        </div>
+        <span class="project-badge pb-watch">Proposed</span>
+      </div>
+
+      <div class="project-item stalled">
+        <div class="project-content">
+          <div class="project-name">Most Pilot #2 SA/VIC battery projects (Sep 2024 awards)</div>
+          <p class="project-detail">Six projects were awarded in September 2024. Over 17 months later, most remain in "proposed" status in AEMO's generation information database. This includes the Springvale Energy Hub (115 MW, Progress Power, VIC) — a smaller developer with a less established balance sheet to support financing.</p>
+        </div>
+        <span class="project-badge pb-stalled">Slow progress</span>
+      </div>
+
+      <div class="project-item ok">
+        <div class="project-content">
+          <div class="project-name">Carmody's Hill Wind Farm — South Australia (247 MW)</div>
+          <p class="project-detail">One of only two wind projects showing meaningful progress in the NEM. Recently secured critical 5.3.4 grid connection approval, a significant hurdle. Advancing toward financial close.</p>
+        </div>
+        <span class="project-badge pb-ok">Advancing</span>
+      </div>
+
+      <div class="project-item ok">
+        <div class="project-content">
+          <div class="project-name">Willogoleche 2 Wind Extension — South Australia (108 MW)</div>
+          <p class="project-detail">Extension of existing wind farm, benefiting from established site infrastructure and existing grid connection. One of the few wind projects with a realistic near-term path to FID. South Australia's strong renewables market provides a more supportive environment.</p>
+        </div>
+        <span class="project-badge pb-ok">Advancing</span>
+      </div>
+
+      <div class="project-item ok">
+        <div class="project-content">
+          <div class="project-name">Orana BESS — Akaysha Energy / BlackRock, NSW (415 MW / 1,660 MWh)</div>
+          <p class="project-detail">CIS Pilot #1 winner. Financing of $650M secured; 12-year virtual offtake deal signed with EnergyAustralia for 200 MW. The most advanced CIS battery project in the NEM. Demonstrates what is possible when a well-capitalised developer has strong institutional backing and offtake certainty.</p>
+        </div>
+        <span class="project-badge pb-ok">FID reached</span>
+      </div>
+
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>No FID / stalled or severely delayed</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div>Proposed / watch — at risk of not proceeding</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Advancing toward or at FID</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- WHY -->
+  <section>
+    <h2>Why projects are stalling</h2>
+    <div class="section-rule"></div>
+    <p style="margin-bottom:1.25rem">Analysis from infrastructure lenders and energy market researchers has identified four structural problems with the CIS design that together explain the low FID conversion rate.</p>
+
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-num">01</div>
+        <div class="reason-title">The low-bid trap</div>
+        <p class="reason-desc">Competitive auctions drive projects to bid the lowest possible revenue floor to win a contract. In many cases, the winning floor is below what equity investors require given current construction cost escalation — a classic "winner's curse." The project wins the contract but cannot attract finance.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">02</div>
+        <div class="reason-title">No price discovery</div>
+        <p class="reason-desc">Winning floor prices are kept confidential. This means competing developers, lenders and equity investors have no way to assess whether existing CIS winners are viable or "zombie" projects, distorting the broader investment landscape and making it harder for genuinely viable projects to secure finance.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">03</div>
+        <div class="reason-title">Weak penalties for non-delivery</div>
+        <p class="reason-desc">The scheme prioritises lowest-cost bids with limited financial consequences for projects that win contracts but never proceed to construction. This creates an incentive for speculative or premature bidding, allowing zombie projects to occupy contract space without consequence.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">04</div>
+        <div class="reason-title">The equity gap</div>
+        <p class="reason-desc">A CISA alone is insufficient to attract equity investment. Lenders also question whether revenue floors justify project risk. Offtake agreements — like the EnergyAustralia deal that unlocked Orana BESS financing — are required but hard to negotiate, creating a chicken-and-egg problem.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- OUTLOOK -->
+  <section>
+    <h2>What to watch in 2026</h2>
+    <div class="section-rule"></div>
+    <p>The critical metric for 2026 is Final Investment Decisions, not contract announcements. New contract awards generate press releases; FIDs generate construction jobs and actual megawatts on the grid.</p>
+    <p>Given that large-scale wind and solar projects take 2–3 years from construction start to grid connection, any project that does not reach FID before mid-2026 will not contribute meaningfully to the 2030 renewable energy target. The window is closing.</p>
+    <p>Two South Australian wind projects — Carmody's Hill and Willogoleche 2 — are the most likely near-term wind FIDs. In storage, Tender 3's two projects that already achieved FID (announced at contract award) demonstrate that the battery sector remains more bankable than generation.</p>
+    <p>If the FID drought for generation projects persists past the second half of 2026, the government will face pressure for a structural review of the CIS — potentially pivoting toward a fixed-price Contract for Difference model similar to the ACT Government's successful long-form feed-in tariff, or introducing penalties for non-delivery to deter speculative bidding.</p>
+
+    <div class="stat-row" style="margin-top:1.75rem">
+      <div class="stat-card">
+        <div class="label">Tenders open (as of Mar 2026)</div>
+        <div class="value">2</div>
+        <div class="note">Tender 7 (5 GW NEM generation) and Tender 8 (16 GWh NEM dispatchable)</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Tender 7 results expected</div>
+        <div class="value">May 26</div>
+        <div class="note">5 GW NEM generation round</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Wind projects at FID (2025)</div>
+        <div class="value">0</div>
+        <div class="note">None in the NEM across the full year</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="label">Key test</div>
+        <div class="value">H2 2026</div>
+        <div class="note">Last viable window for 2030 delivery if projects start construction now</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-sources">
+      <strong style="font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-light);">Sources</strong><br>
+      DCCEEW Capacity Investment Scheme official pages · AEMO Generation Information (Oct 2025) · Infradebt, "Why the CIS's Design is Stranding Australia's Renewable Pipeline" (Dec 2025) · WattClarity CIS series (Sep–Nov 2025) · Modo Energy CIS Tender 3 analysis (Sep 2025) · pv magazine Australia · RenewEconomy · IEEFA, "Five ways to save the CIS from zombies" · Clean Energy Council briefings · First Nations Clean Energy Network project tracker.
+    </div>
+    <div class="footer-date">Compiled March 2026</div>
+  </div>
+</footer>
+
+<script>
+  // Animate progress bars on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const fills = document.querySelectorAll('.progress-fill');
+    fills.forEach(fill => {
+      const target = fill.style.width;
+      fill.style.width = '0';
+      setTimeout(() => { fill.style.width = target; }, 200);
+    });
+  });
+</script>
+
+</body>
+</html>
